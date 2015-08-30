@@ -501,6 +501,27 @@ $progressbar-mobile-width: 14px;
           &:last-child {
             margin-bottom: 0;
           }
+
+          &.parent_page {
+            height: 20px;
+            margin-bottom: 5px;
+            display: none;
+
+            .has_no_mobile_platform &.visible {
+              display: block;
+            }
+
+            a {
+              background-color: $nav-active-chapter;
+
+              @include background-icon-center($color: white, $font-size: 11px);
+              @include fa-arrow-left-icon;
+            }
+          }
+
+          &.filtered {
+            display: none;
+          }
         }
 
         a {

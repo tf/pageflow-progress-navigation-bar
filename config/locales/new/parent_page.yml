@@ -1,0 +1,13 @@
+de:
+  pageflow:
+    progress_navigation_bar:
+      widget:
+        parent_page:
+          header: "Zurück zu"
+
+en:
+  pageflow:
+    progress_navigation_bar:
+      widget:
+        parent_page:
+          header: "Back to"

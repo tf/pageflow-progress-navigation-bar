@@ -4,16 +4,36 @@
   $.widget('pageflow.progressNavigationBar', {
     _create: function() {
       var overlays = this.element.find('.navigation_site_detail'),
+          overlaysByPermaId = {},
+          parentPage = this.element.find('.parent_page'),
+          parentPageInfo = this.element.find('.parent_page .page_info'),
           that = this,
           hasHomeButton = !!this.element.find('.navigation_home').length;
 
+      overlays.each(function() {
+        var overlay = $(this);
+        var link = overlay.prev();
+        overlaysByPermaId[parseInt(link.attr('href').replace('#', ''), 10)] = overlay;
+      });
+
       this.element.addClass('js').append(overlays);
-
-      $('a.navigation_top', this.element).topButton();
-
       $('.navigation_bar_bottom', this.element)
         .append($('.navigation_bar_top > li', this.element).slice(hasHomeButton ? 4 : 3));
 
+      $('a.navigation_top', this.element).topButton();
+
+      /* parent page */
+
+      parentPage.parentPageButton();
+
+      pageflow.events.on('page:change', function(page) {
+        var parentPagePermaId = pageflow.entryData.getParentPagePermaIdByPagePermaId(page.getPermaId());
+
+        if (parentPagePermaId) {
+          var pageInfoHtml = overlaysByPermaId[parentPagePermaId].find('.page_info').html();
+          parentPageInfo.html(pageInfoHtml);
+        }
+      });
 
       /* open menu magic */
       var checkingForMouseDelta = false,
@@ -173,11 +193,16 @@
       });
 
       var resizeDots = function() {
-        var pageDotsMaxHeight = 20,
-        pageDotsMinHeight = 1,
-        maxBarHeight = $('#outer_wrapper').height() ? $('#outer_wrapper').height() : $('main').height(),
-        wantedHeight = maxBarHeight / pageLinks.length,
-        appliedHeight = pageDotsMinHeight;
+        var pageDotsMaxHeight = 20;
+        var pageDotsMinHeight = 1;
+        var maxBarHeight = $('#outer_wrapper').height() ? $('#outer_wrapper').height() : $('main').height();
+
+        if (parentPage.hasClass('visible')) {
+          maxBarHeight -= parentPage.outerHeight();
+        }
+
+        var wantedHeight = maxBarHeight / pageLinks.length;
+        var appliedHeight = pageDotsMinHeight;
 
 
         if(wantedHeight <= pageDotsMaxHeight && wantedHeight > pageDotsMinHeight) {
@@ -187,7 +212,7 @@
           appliedHeight = pageDotsMaxHeight;
         }
 
-        $('.navigation_dots > li').css('height', appliedHeight + 'px');
+        $('.navigation_dots > li:not(.parent_page)').css('height', appliedHeight + 'px');
       };
 
       resizeDots();
