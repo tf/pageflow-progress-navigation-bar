@@ -7,8 +7,6 @@ $nav-active-page: $main-color;
 $nav-active-chapter-beginning: desaturate($main-color, 40%);
 
 $nav-hint-color: #A9A9A9 !default;
-$nav-display-header-button: false !default;
-$nav-display-overview-button: true !default;
 
 $nav-chapter-beginning: #afafaf;
 $nav-dot-even: #9B9B9B;
@@ -25,54 +23,7 @@ $nav-bg-color-transparent: $basic-background-color-transparent;
 }
 
 .progress_navigation_bar {
-  @if $nav-display-header-button {
-    .navigation_button_area .navigation_bar_buttons li {
-      height: 11.11%;
-
-      &.mute {
-        height: 22.22%;
-      }
-    }
-
-    &.with_home_button {
-      .navigation_button_area .navigation_bar_buttons li {
-        height: 10%;
-
-        &.mute {
-          height: 20%;
-        }
-      }
-    }
-  }
-  @else {
-    .navigation_button_area .navigation_bar_buttons li {
-      height: 12.25%;
-
-      &.menu_li {
-        display: none;
-      }
-
-      &.mute {
-        height: 25%;
-      }
-    }
-
-    &.with_home_button {
-      .navigation_button_area .navigation_bar_buttons li {
-        height: 11.11%;
-
-        &.mute {
-          height: 22.22%;
-        }
-      }
-    }
-  }
-
-  @if not $nav-display-overview-button {
-    .navigation_overview_item {
-      display: none;
-    }
-  }
+  @import "./default/button_heights";
 
   .navigation_button_area .navigation_bar_buttons {
     &:after {

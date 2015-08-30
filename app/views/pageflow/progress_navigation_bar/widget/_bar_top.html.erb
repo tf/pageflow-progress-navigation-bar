@@ -12,12 +12,14 @@
       <span class="navi_hint"><%= t('.first_page') %></span>
     </a>
   </li>
-  <li class="navigation_overview_item">
-    <a class="navigation_bullet navigation_index" tabindex="2" title="<%= t('.display_overview') %>" data-active-title="<%= t('.hide_overview') %>">
-      <span class="button"></span>
-      <span class="navi_hint"><%= t('.overview') %></span>
-    </a>
-  </li>
+  <% if entry.storylines.one? %>
+    <li class="navigation_overview_item">
+      <a class="navigation_bullet navigation_index" tabindex="2" title="<%= t('.display_overview') %>" data-active-title="<%= t('.hide_overview') %>">
+        <span class="button"></span>
+        <span class="navi_hint"><%= t('.overview') %></span>
+      </a>
+    </li>
+  <% end %>
   <li class="fullscreen">
     <a class="navigation_bullet navigation_fullscreen" tabindex="2" title="<%= t('.enter_fullscreen') %>" data-active-title="<%= t('.leave_fullscreen') %>">
       <span class="button"></span>
