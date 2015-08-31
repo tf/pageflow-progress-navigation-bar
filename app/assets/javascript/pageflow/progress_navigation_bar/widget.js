@@ -204,7 +204,6 @@
         var wantedHeight = maxBarHeight / pageLinks.length;
         var appliedHeight = pageDotsMinHeight;
 
-
         if(wantedHeight <= pageDotsMaxHeight && wantedHeight > pageDotsMinHeight) {
           appliedHeight = wantedHeight;
         }
@@ -212,7 +211,7 @@
           appliedHeight = pageDotsMaxHeight;
         }
 
-        $('.navigation_dots > li:not(.parent_page)').css('height', appliedHeight + 'px');
+        $('.navigation_dots ul li').css('height', appliedHeight + 'px');
       };
 
       resizeDots();

@@ -1,0 +1,11 @@
+<li class="storyline">
+  <ul>
+  <%= render :partial => 'pageflow/progress_navigation_bar/widget/page',
+             :collection => storyline.pages.displayed_in_navigation,
+             :locals => {
+               :image_style => :navigation_thumbnail_small,
+               :image_width => 85,
+               :chapters_count => storyline.chapters.count
+             } %>
+  </ul>
+</li>

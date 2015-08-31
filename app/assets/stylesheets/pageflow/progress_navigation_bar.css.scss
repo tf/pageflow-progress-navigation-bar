@@ -477,9 +477,7 @@ $progressbar-mobile-width: 14px;
 
       @include pageflow-progress-navigation-bar-transparent-background;
 
-
-
-      ul {
+      > ul {
         position: absolute;
         right: 8px;
         width: 14px;

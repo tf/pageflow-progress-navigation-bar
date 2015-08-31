@@ -14,9 +14,8 @@
       <%= render :partial => 'pageflow/progress_navigation_bar/widget/parent_page',
                  :locals => {:image_style => :navigation_thumbnail_small, :image_width => 85} %>
 
-      <%= render :partial => 'pageflow/progress_navigation_bar/widget/page',
-                 :collection => entry.pages.displayed_in_navigation,
-                 :locals => {:image_style => :navigation_thumbnail_small, :image_width => 85, :chapters_count => entry.chapters.count} %>
+      <%= render :partial => 'pageflow/progress_navigation_bar/widget/storyline',
+                 :collection => entry.storylines %>
     </ul>
   </div>
 <% end %>
